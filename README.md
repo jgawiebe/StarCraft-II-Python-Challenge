@@ -1,5 +1,5 @@
 # StarCraft-II-Python-Challenge
-A challenge environment for controlling SC2 units. Based on [PySC2](https://github.com/google-deepmind/pysc2) specifically for exploring heuristic army tactics.
+A challenge environment for controlling SC2 units. Based on [PySC2](https://github.com/google-deepmind/pysc2) specifically for exploring competitive heuristic tactics.
 
 ## Installation Instructions
 1. Install dependencies in virtual environment `pip install -r requirements.txt`
