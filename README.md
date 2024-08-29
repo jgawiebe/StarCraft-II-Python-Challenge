@@ -2,19 +2,19 @@
 A challenge environment for controlling SC2 units. Based on [PySC2](https://github.com/google-deepmind/pysc2) specifically for exploring competitive heuristic tactics.
 
 ## Installation Instructions
-1. Install dependencies in virtual environment `pip install -r requirements.txt`
-2. Move challenge maps to `\<StarCraft II Installation Directory\>\Maps\EEE466\\*.SC2Map`
+1. Install dependencies in a virtual environment `pip install -r requirements.txt`
+2. Move challenge maps to `\<StarCraft II Installation Directory\Maps\EEE466\*.SC2Map`
 3. Add line `import challenge_maps  # use locally created maps` to `venv\Lib\site-packages\pysc2\maps\__init__.py`
 4. Add `Version("5.0.13", 92174,"D44E66924A56B2D4BC94786D8A7EB5B8", None),` to `venv\Lib\site-packages\pysc2\run_configs\lib.py VERSIONS`
 
 ## Running the game
-Use `run.py` to configure and run games. There are a few parameters you can change, notably the player1 and player2 agents. An agent can be a `LocalAgent` which takes a policy object in its constructor (remember to import the class into `run.py`), a `RemoteAgent`, or a `Bot`. Agents need to be named with the exception of the `LocalAgent` which will take the name given by its policy if none is selected for it. Note that for the competition, you are submitting only a policy class. Make sure that it can play on either side of the map as a `LocalAgent`.
+Use `run.py` to configure and run games. There are a few parameters you can change, notably the player1 and player2 agents. An agent can be a `LocalAgent` which takes a policy object in its constructor (remember to import the class into `run.py`), a `RemoteAgent`, or a `Bot`. Agents need to be named with the exception of the `LocalAgent` which will take the name given by its policy if none is selected for it.
 
 ## Challenge 1: Policy Design
 You are provided with a `LocalAgent` class that inherits from the PySC2 `BaseAgent` (see `agent.py`). This is an object that the simulation expects to receive game observations and to perform the step function. The agent's `_step()` is bound to the policy that it was instantiated with. Each policy (see `policy.py`) is given a unique name and implements the `execute()` method. This is where the input (observations) are interpreted and an action is selected. Observations are a named tuple with various information about friendly and enemy units, notably their position and health (see `utils.py`). The policy `execute()` method must return an `Action` object. `utils.action_cmd()` is a constructor for `Action` objects.
 
 ## Challenge 2: Remote Agent
-To complete the implementation of `RemoteAgent` you will need to create a server object (to run "locally" WRT the simulation) and a client object running remotely. The client must be started as a separate process. The client is responsible to instantiating and running the policy. Which policy to use can be selected at the client or at the server. You must use protobuf to format the exchange of messages.
+To complete the implementation of `RemoteAgent` you will need to create a server object (to run "locally" with respect to the simulation) and a client object running remotely. The client must be started as a separate process. The client is responsible to instantiating and running the policy. Which policy to use can be selected at the client or at the server. You must use protobuf to format the exchange of messages.
 
 ## Observations
 Observations are defined in the code block below:
