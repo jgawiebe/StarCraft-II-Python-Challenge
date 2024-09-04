@@ -13,7 +13,8 @@ class Policy(ABC):
 
 
 class Ostrich(Policy):
-
+    """Example policy - Do nothing."""
+    
     def __init__(self):
         self.name = ""
 

@@ -1,5 +1,3 @@
-import threading
-
 from absl import app
 
 from pysc2 import maps
@@ -8,7 +6,6 @@ import sc2_env
 
 from agent import RemoteAgent, LocalAgent, Bot
 from policies import Ostrich, Run
-from solution_policies import Banana
 
 
 def main(argv):
@@ -17,12 +14,11 @@ def main(argv):
     """
     # Select map from: 3v3, 10v10, bonus, bonus_pvp
     map_name = "10v10"
-    realtime = False  # if false game rendering is sped up
     visualize = False  # show pygame views
     replay = False  # save replay file
 
     # Select agent class from: LocalAgent, RemoteAgent, Bot
-    # If using LocalAgent specify a policy, built-in policies: Ostrich, Avoid
+    # If using LocalAgent specify a policy, built-in policies: Ostrich, Run
     player1_agent = LocalAgent(policy=Run, name="player1")
     player2_agent = Bot(name="player2")
 
@@ -46,16 +42,17 @@ def main(argv):
         ),
         step_mul=1,
         score_index=-1,
-        realtime=realtime,
+        realtime=True,
         disable_fog=True,
         visualize=visualize,
     ) as env:
         # Run game
         run_loop.run_loop(agents, env, max_frames=0, max_episodes=1)
         print(
-            f"""Scores -
+            f"""Scores:
                   {player1_agent.name}: {env.outcome[0]}
-                  {player2_agent.name}: {env.outcome[1] if len(env.outcome) > 1 else 'N/A'}\n-"""
+                  {player2_agent.name}: {env.outcome[1] if len(env.outcome) > 1 else 'N/A'}
+                ------------"""
         )
         if replay:
             env.save_replay("", player1_agent.name)
