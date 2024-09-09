@@ -1,3 +1,4 @@
+import threading
 from pysc2.agents import base_agent
 
 from server import Server
@@ -27,7 +28,7 @@ class RemoteAgent(base_agent.BaseAgent):
 
     def run(self):
         self.server = Server()
-        server_t = threading.Thread(target=server.run, daemon=True)
+        server_t = threading.Thread(target=self.server.run, daemon=True)
         server_t.start()
 
     def _step(self):
