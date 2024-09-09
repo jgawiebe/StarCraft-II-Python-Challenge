@@ -4,8 +4,7 @@ A challenge environment for controlling SC2 units. Based on [PySC2](https://gith
 ## Installation Instructions
 1. Install dependencies in a virtual environment `pip install -r requirements.txt`
 2. Move challenge maps to `\<StarCraft II Installation Directory\Maps\EEE466\*.SC2Map`
-3. Add line `import challenge_maps  # use locally created maps` to `venv\Lib\site-packages\pysc2\maps\__init__.py`
-4. Add `Version("5.0.13", 92174,"D44E66924A56B2D4BC94786D8A7EB5B8", None),` to `venv\Lib\site-packages\pysc2\run_configs\lib.py VERSIONS`
+3. Add `Version("5.0.13", 92174,"D44E66924A56B2D4BC94786D8A7EB5B8", None),` to `venv\Lib\site-packages\pysc2\run_configs\lib.py VERSIONS`
 
 ## Running the game
 Use `run.py` to configure and run games. There are a few parameters you can change, notably the player1 and player2 agents. An agent can be a `LocalAgent` which takes a policy object in its constructor (remember to import the class into `run.py`), a `RemoteAgent`, or a `Bot`. Agents need to be named with the exception of the `LocalAgent` which will take the name given by its policy if none is selected for it.
